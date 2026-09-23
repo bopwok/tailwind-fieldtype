@@ -1,8 +1,15 @@
 <template>
-    <div @click="update" class="h-8 w-8 rounded-md border m-1 cursor-pointer" :class="isActive ? 'ring-2' : ''" :style="{ 'background-color': color.hex }" :title="title">
-        <span class="sr-only">{{ color }}</span>
+    <div
+        @click="update"
+        class="h-8 w-8 rounded-md border m-1 cursor-pointer"
+        :class="isActive ? 'ring-2' : ''"
+        :style="{ backgroundColor: color.hex }"
+        :title="title"
+    >
+        <span class="sr-only">{{ title }}</span>
     </div>
 </template>
+
 <script>
 export default {
     props: {
@@ -15,6 +22,9 @@ export default {
             required: true,
         },
     },
+
+    emits: ['select'],
+
     computed: {
         isActive() {
             return this.active.color === this.color.color && this.active.weight === this.color.weight;
@@ -27,9 +37,13 @@ export default {
             return `${this.color.color}-${this.color.weight}`;
         },
     },
+
     methods: {
         update() {
-            this.$emit("update", this.color.color, this.color.weight);
+            this.$emit('select', {
+                color: this.color.color,
+                weight: this.color.weight,
+            });
         },
     },
 };

@@ -1,13 +1,13 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
-import vue from "@vitejs/plugin-vue2";
+import statamic from '@statamic/cms/vite-plugin'; 
 
 export default defineConfig({
     plugins: [
+        statamic(),
         laravel({
             input: ["resources/js/cp.js", "resources/css/cp.css"],
             publicDirectory: "resources/dist",
         }),
-        vue(),
     ],
 });

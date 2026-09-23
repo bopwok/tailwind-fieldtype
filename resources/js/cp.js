@@ -1,3 +1,8 @@
-import TailwindColorPicker from './TailwindColorPicker.vue';
+import TailwindColorPicker from './TailwindColorPicker.vue'
 
-Statamic.$components.register('tailwind_picker-fieldtype', TailwindColorPicker);
+console.log('tailwind-fieldtype cp.js loaded')
+
+Statamic.booting(() => {
+    console.log('registering tailwind_picker-fieldtype')
+    Statamic.$components.register('tailwind_picker-fieldtype', TailwindColorPicker)
+})
